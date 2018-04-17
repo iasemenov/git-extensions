@@ -1,0 +1,36 @@
+<idea-plugin>
+    <id>org.jetbrains.plugins.iasemenov.idea-git-extensions</id>
+    <name>IDEA Git Extensions</name>
+    <version>1.0</version>
+    <vendor email="ivan.semenov@jetbrains.com">JetBrains s.r.o</vendor>
+
+    <description>Some lazy-guy extensions for Git integration written ASAP and not meant for production</description>
+
+    <depends>Git4Idea</depends>
+
+    <actions>
+        <action class="org.jetbrains.plugins.iasemenov.gitext.FixupByHashLogAction"
+                id="Git.Fixup.In.Log.By.Hash"
+                text="Fixup by hash">
+            <add-to-group group-id="Git.LogContextMenu" anchor="last"/>
+            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="last"/>
+        </action>
+        <action class="org.jetbrains.plugins.iasemenov.gitext.FixupBySubjectLogAction"
+                id="Git.Fixup.In.Log.By.Subject"
+                text="Fixup by subject">
+            <add-to-group group-id="Git.LogContextMenu" anchor="last"/>
+            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="last"/>
+        </action>
+        <action class="org.jetbrains.plugins.iasemenov.gitext.GitInteractiveAutoRebaseAction"
+                id="Git.AutoRebase.In.Log"
+                text="Auto-Rebase">
+            <add-to-group group-id="Git.LogContextMenu" anchor="after" relative-to-action="Git.Interactive.Rebase"/>
+            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="after" relative-to-action="Git.Interactive.Rebase"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <vcsAnnotationGutterActionProvider implementation="org.jetbrains.plugins.iasemenov.gitext.FixupByHashGutterActionProvider"/>
+        <vcsAnnotationGutterActionProvider implementation="org.jetbrains.plugins.iasemenov.gitext.FixupBySubjectGutterActionProvider"/>
+    </extensions>
+</idea-plugin>
