@@ -1,38 +1,24 @@
 <idea-plugin>
     <id>org.jetbrains.plugins.iasemenov.idea-git-extensions</id>
-    <name>IDEA Git Extensions</name>
-    <version>1.1</version>
+    <name>Quick Git fixup</name>
+    <version>1.2</version>
     <vendor email="ivan.semenov@jetbrains.com">JetBrains s.r.o</vendor>
     
-    <idea-version since-build="191.1508" until-build="192.*"/>
+    <idea-version since-build="193.*" until-build="193.*"/>
 
-    <description>Some lazy-guy extensions for Git integration written ASAP and not meant for production</description>
+    <description>Fixup from annotations and auto-rebase from log</description>
 
     <depends>Git4Idea</depends>
 
     <actions>
-        <action class="org.jetbrains.plugins.iasemenov.gitext.FixupByHashLogAction"
-                id="Git.Fixup.In.Log.By.Hash"
-                text="Fixup by hash">
-            <add-to-group group-id="Git.LogContextMenu" anchor="last"/>
-            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="last"/>
-        </action>
-        <action class="org.jetbrains.plugins.iasemenov.gitext.FixupBySubjectLogAction"
-                id="Git.Fixup.In.Log.By.Subject"
-                text="Fixup by subject">
-            <add-to-group group-id="Git.LogContextMenu" anchor="last"/>
-            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="last"/>
-        </action>
         <action class="org.jetbrains.plugins.iasemenov.gitext.GitInteractiveAutoRebaseAction"
                 id="Git.AutoRebase.In.Log"
                 text="Auto-Rebase">
-            <add-to-group group-id="Git.LogContextMenu" anchor="after" relative-to-action="Git.Interactive.Rebase"/>
-            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="after" relative-to-action="Git.Interactive.Rebase"/>
+            <add-to-group group-id="Git.Log.ContextMenu" anchor="after" relative-to-action="Git.Interactive.Rebase"/>
         </action>
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <vcsAnnotationGutterActionProvider implementation="org.jetbrains.plugins.iasemenov.gitext.FixupByHashGutterActionProvider"/>
         <vcsAnnotationGutterActionProvider implementation="org.jetbrains.plugins.iasemenov.gitext.FixupBySubjectGutterActionProvider"/>
     </extensions>
 </idea-plugin>
